@@ -38,7 +38,7 @@
             border: 5px solid #f3f3f3;
             border-top: 5px solid #ff7f50;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: spin 5s linear infinite;
             margin: 20px auto;
         }
         @keyframes spin {
@@ -115,7 +115,7 @@
             <textarea id="user_input" name="user_input" required placeholder="Enter your Python code prompt..."></textarea>
             <button type="submit" onclick="showSpinner()">Generate Code</button>
         </form>
-        
+        <div id="spinner" class="spinner"></div>
         <div id="result-container">
             {% if result %}
                 <h2 class="result-title">Generated Code:</h2>
@@ -135,7 +135,7 @@
             setTimeout(() => {
                 document.getElementById('spinner').style.display = 'none';
                 document.getElementById('result-container').style.display = 'block';
-            }, 3000);
+            }, 10000);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
