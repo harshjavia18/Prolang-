@@ -38,7 +38,7 @@
             border: 5px solid #f3f3f3;
             border-top: 5px solid #ff7f50;
             border-radius: 50%;
-            animation: spin 5s linear infinite;
+            animation: spin 2s linear infinite;
             margin: 20px auto;
         }
         @keyframes spin {
@@ -113,7 +113,7 @@
         <form method="POST" action="">
             <label for="user_input">Enter Python Prompt:</label>
             <textarea id="user_input" name="user_input" required placeholder="Enter your Python code prompt..."></textarea>
-            <button type="submit" onclick="showSpinner()">Generate Code</button>
+            <button type="submit" onclick="showSpinner(event)">Generate Code</button>
         </form>
         <div id="spinner" class="spinner"></div>
         <div id="result-container">
@@ -129,13 +129,18 @@
     <div class="floating-message" onclick="scrollToTop()">Back to Top</div>
 
     <script>
-        function showSpinner() {
+        function showSpinner(event) {
+            event.preventDefault();
+            const spinnerDuration = 10000; // Set the spinner to run for 60 seconds
+
             document.getElementById('spinner').style.display = 'block';
             document.getElementById('result-container').style.display = 'none';
+            
             setTimeout(() => {
                 document.getElementById('spinner').style.display = 'none';
                 document.getElementById('result-container').style.display = 'block';
-            }, 10000);
+                document.querySelector('form').submit(); // Submit the form after spinner duration
+            }, spinnerDuration);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
